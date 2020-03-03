@@ -1,49 +1,28 @@
-import { A } from '@ember/array';
-import EmberObject, { computed } from '@ember/object';
-import Component from '@ember/component';
+import EmberObject, {
+  computed,
+  observer
+} from '@ember/object';
 
-export default Component.extend({
-  todos: null,
+const Person = EmberObject.extend({
+  // these will be supplied by `create`
+  firstName: null,
+  lastName: null,
 
-  init() {
-    this._super(...arguments);
-    this.set('todos', A([
-      EmberObject.create({ title: 'Buy food', isDone: true }),
-      EmberObject.create({ title: 'Eat food', isDone: false }),
-      EmberObject.create({ title: 'Catalog Tomster collection', isDone: true }),
-    ]));
-  },
+  fullName: computed('firstName', 'lastName', function() {
+    return `${this.firstName} ${this.lastName}`;
+  }),
 
-  titles: computed('todos.[]', function() {             // *********** [] - detect the inc or dec or replaced in array value *************
-    return this.todos.mapBy('title');
+  fullNameChanged: observer('fullName', function() {    // ************* observer *****************
+    // deal with the change
+    console.log(`fullName changed to: ${this.fullName}`);
   })
 });
 
-
-export default Component.extend({
-  todos: null,
-
-  init() {
-    this._super(...arguments);
-    this.set('todos', A([
-      EmberObject.create({ isDone: true }),
-      EmberObject.create({ isDone: false }),
-      EmberObject.create({ isDone: true }),
-    ]));
-  },
-
-  incomplete: computed('todos.@each.isDone', function() {   // *********** @ - detect the changes in array value *************
-    let todos = this.todos;
-    return todos.filterBy('isDone', false);
-  })
+let person = Person.create({
+  firstName: 'Yehuda',
+  lastName: 'Katz'
 });
 
-
-incomplete: computed('todos.[]', 'todos.@each.isDone', function() {
-...
-})
-
-
-// *************************  macros ****************
-
-incomplete: filterBy('todos', 'isDone', false)  // @
+// observer won't fire until `fullName` is consumed first
+person.get('fullName'); // "Yehuda Katz"
+person.set('firstName', 'Brohuda'); // fullName changed to: Brohuda Katz
