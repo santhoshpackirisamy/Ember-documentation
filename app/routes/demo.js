@@ -1,46 +1,26 @@
-import EmberObject from '@ember/object';
-import Component from '@ember/component';
-import { alias } from '@ember/object/computed';
-import { oneWay } from '@ember/object/computed';
+//In order for Ember to observe when you make a change to an enumerable, you need to use special methods that MutableArray provides. For example, if you add an element to an array using the standard JavaScript method push(), Ember will not be able to observe the change, but if you use the enumerable method pushObject(), the change will propagate throughout your application.
 
-let husband = EmberObject.create({
-  pets: 0
-});
+//pop           	popObject
+//push	            pushObject
+//reverse	        reverseObjects
+//shift	            shiftObject
+//unshift	        unshiftObject
 
-let Wife = EmberObject.extend({
-  pets: alias('husband.pets')                           //    two way binding
-});
 
-let wife = Wife.create({
-  husband: husband
-});
+import { A } from '@ember/array';
 
-console.log(wife.get('pets')); // 0
+let animals = A(['rooster', 'pig']);
 
-// Someone gets a pet.
-husband.set('pets', 1);
-wife.get('pets'); // 1
+console.log(animals.get('lastObject'));
+//=> "pig"
 
-// ***************************************
+animals.pushObject('peacock');
 
-let user = EmberObject.create({
-  fullName: 'Kara Gates'
-});
+animals.get('lastObject');
 
-let UserComponent = Component.extend({
-  userName: oneWay('user.fullName')                     //    one way binding
-});
 
-let userComponent = UserComponent.create({
-  user: user
-});
+let words = ['goodbye', 'cruel', 'world'];
 
-// Changing the name of the user object changes
-// the value on the view.
-user.set('fullName', 'Krang Gates');
-// userComponent.userName will become "Krang Gates"
+let emphaticWords = words.map(item => `${item}!`);
 
-// ...but changes to the view don't make it back to
-// the object.
-userComponent.set('userName', 'Truckasaurus Gates');
-user.get('fullName'); // "Krang Gates"
+console.log(emphaticWords);
