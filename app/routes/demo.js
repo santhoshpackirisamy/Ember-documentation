@@ -1,28 +1,46 @@
-import EmberObject, {
-  computed,
-  observer
-} from '@ember/object';
+import EmberObject from '@ember/object';
+import Component from '@ember/component';
+import { alias } from '@ember/object/computed';
+import { oneWay } from '@ember/object/computed';
 
-const Person = EmberObject.extend({
-  // these will be supplied by `create`
-  firstName: null,
-  lastName: null,
-
-  fullName: computed('firstName', 'lastName', function() {
-    return `${this.firstName} ${this.lastName}`;
-  }),
-
-  fullNameChanged: observer('fullName', function() {    // ************* observer *****************
-    // deal with the change
-    console.log(`fullName changed to: ${this.fullName}`);
-  })
+let husband = EmberObject.create({
+  pets: 0
 });
 
-let person = Person.create({
-  firstName: 'Yehuda',
-  lastName: 'Katz'
+let Wife = EmberObject.extend({
+  pets: alias('husband.pets')                           //    two way binding
 });
 
-// observer won't fire until `fullName` is consumed first
-person.get('fullName'); // "Yehuda Katz"
-person.set('firstName', 'Brohuda'); // fullName changed to: Brohuda Katz
+let wife = Wife.create({
+  husband: husband
+});
+
+console.log(wife.get('pets')); // 0
+
+// Someone gets a pet.
+husband.set('pets', 1);
+wife.get('pets'); // 1
+
+// ***************************************
+
+let user = EmberObject.create({
+  fullName: 'Kara Gates'
+});
+
+let UserComponent = Component.extend({
+  userName: oneWay('user.fullName')                     //    one way binding
+});
+
+let userComponent = UserComponent.create({
+  user: user
+});
+
+// Changing the name of the user object changes
+// the value on the view.
+user.set('fullName', 'Krang Gates');
+// userComponent.userName will become "Krang Gates"
+
+// ...but changes to the view don't make it back to
+// the object.
+userComponent.set('userName', 'Truckasaurus Gates');
+user.get('fullName'); // "Krang Gates"
