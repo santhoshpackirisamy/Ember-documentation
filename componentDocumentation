@@ -1,0 +1,50 @@
+*********Dynamic Rendering *********************
+
+
+app/templates/components/foo-component.hbs
+
+<h3>Hello from foo!</h3>
+<p>{{this.post.body}}</p>
+
+
+/////////////////////////////////
+
+
+app/templates/components/bar-component.hbs
+
+<h3>Hello from bar!</h3>
+<div>{{this.post.author}}</div>
+
+/////////////////////////////////
+
+
+app/routes/index.js
+
+import Route from '@ember/routing/route';
+
+export default Route.extend({
+  model() {
+    return this.store.findAll('post');
+  }
+});
+
+/////////////////////////////////
+
+app/templates/index.hbs
+
+{{#each this.model as |post|}}
+  {{!-- either foo-component or bar-component --}}
+  {{component post.componentName post=post}}
+{{/each}}
+
+///////////////////////////////(or)
+
+
+app/templates/index.hbs
+
+{{#each this.model as |post|}}
+  {{!-- either foo-component or bar-component --}}
+  {{#let (component this.componentName) as |Post|}}
+    <Post @post={{post}} />
+  {{/let}}
+{{/each}}

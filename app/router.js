@@ -8,6 +8,9 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('demo');
+  this.route('helper-template', function(){
+    this.route('edit', { path: '/:photo_id' });
+  });
 });
 
 export default Router;
