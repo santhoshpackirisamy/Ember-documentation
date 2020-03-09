@@ -1,0 +1,6 @@
+<ul>
+  {{#each this.model as |photo|}}
+    <li><LinkTo @route="photos.edit" @model={{photo}}  @query={{hash direction="asc"}} class="btn btn-primary">{{photo.title}}</LinkTo></li>
+  {{/each}}
+</ul>
+{{outlet}}

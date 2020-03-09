@@ -191,3 +191,49 @@
     <div id="logo">
       <img src="http://www.example.com/images/logo.png" alt="Logo">
     </div>
+    
+15) LINK-TO
+
+    The <LinkTo> component takes one or two arguments:
+
+    *) The name of a route. In this example, it would be index, photos, or photos.edit.
+    
+    *) At most one model for each dynamic segment. By default, Ember.js will replace each segment with the value of the corresponding object's id property. In the example above, the second argument is each photo object, and the id property is used to fill in the dynamic segment with either 1, 2, or 3
+    
+16) Example for Multiple Segments
+
+    app/router.js
+
+    Router.map(function() {
+      this.route('photos', function(){
+        this.route('photo', { path: '/:photo_id' }, function(){
+          this.route('comments');
+          this.route('comment', { path: '/comments/:comment_id' });
+        });
+      });
+    });
+    
+    ///////////////////////////////// (problem)
+    
+<div class="photo">
+{{this.body}}
+</div>
+
+<p><LinkTo @route="photos.photo.comment" @model={{this.primaryComment}}>Main Comment</LinkTo></p>
+
+If you specify only one model, it will represent the innermost dynamic segment :comment_id. The :photo_id segment will use the current photo.
+
+Alternatively, you could pass both a photo's ID and a comment to the component:
+
+
+    ////////////////////////////////////// (remedy)
+    
+    app/templates/photo/index.hbs
+
+    <p>
+      <LinkTo @route="photo.comment" @models={{array 5 this.primaryComment}}>
+        Main Comment for the Next Photo
+      </LinkTo>
+    </p>
+    
+    
