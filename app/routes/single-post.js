@@ -8,6 +8,7 @@ export default Route.extend({
   },
     model()
     {
-        return {title:'templet-title'}
+        return {title:'templet-title',
+                totalDue:250}
     }
 });

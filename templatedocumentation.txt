@@ -243,3 +243,45 @@ Alternatively, you could pass both a photo's ID and a comment to the component:
 18) DYNAMIC BINDING 
 
     <Input @value={{mut (get this.person this.field)}} />
+    
+19) Helper Names
+
+    Unlike components, which require a dash in the name to follow the Custom Element spec, helper names can be single or multi-word. If your helper's name is multi-word, it should be dasherized as the examples on this page.
+
+20) Helper multi arguments
+
+    {{my-helper "hello" "world"}}
+
+    An array of these arguments is passed to the helper function:
+    app/helpers/my-helper.js
+
+    import { helper } from '@ember/component/helper';
+
+    export function myHelper(params) {
+      let [arg1, arg2] = params;
+
+      console.log(arg1); // => "hello"
+      console.log(arg2); // => "world"
+    };
+
+    export default helper(myHelper);
+    
+21) Named Helper arguments
+
+    {{my-helper option1="hello" option2="world" option3="goodbye cruel world"}}
+
+    app/helpers/my-helper.js
+
+    import { helper } from '@ember/component/helper';
+
+    export function myHelper(params, namedArgs) {
+      console.log(namedArgs.option1); // => "hello"
+      console.log(namedArgs.option2); // => "world"
+      console.log(namedArgs.option3); // => "goodbye cruel world"
+    };
+
+    export default helper(myHelper);
+
+22) Class-based Helpers
+
+    In some situations, however, you may need to write a helper that interacts with the rest of your application. You can create class-based helpers that have access to services in your application, and can optionally save state as well, although this is usually unnecessary and error-prone.
