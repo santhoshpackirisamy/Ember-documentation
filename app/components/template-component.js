@@ -9,5 +9,6 @@ export default Component.extend({
       'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'],
       'Ryes': ['WhistlePig', 'High West']
     });
-  }
+  },
+    isAdministrator : true
 });

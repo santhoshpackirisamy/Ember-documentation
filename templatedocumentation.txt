@@ -142,3 +142,40 @@
         {{else}}
           Sorry, nobody is here.
         {{/each}}
+        
+13) Passing HTML attributes to components
+
+    *) attributeBindings
+    
+    app/templates/application.hbs
+
+    <NameEditor data-test-my-custom-attribute />
+    
+    ///////////////////////////////
+    
+    app/components/name-editor.js
+
+    import Component from '@ember/component';
+
+    export default Component.extend({
+      attributeBindings: ['data-test-my-custom-attribute']
+    });
+    
+    *) ...attributes
+    
+    app/components/name-editor.js
+
+    import Component from '@ember/component';
+
+    export default Component.extend({
+      enteredName: null
+    });
+    
+    //////////////////////////////
+
+    app/components/templates/name-editor.hbs
+
+    <p>Hello User, please enter your name:</p>
+
+    <label for="name-editor">
+    <Input @value={{this.enteredName}} id="name-editor" />
