@@ -240,3 +240,6 @@ Alternatively, you could pass both a photo's ID and a comment to the component:
 
     eg : <button {{action "select" this.value on="mouseUp"}}>✓</button>
     
+18) DYNAMIC BINDING 
+
+    <Input @value={{mut (get this.person this.field)}} />

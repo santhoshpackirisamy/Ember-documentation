@@ -1,1 +1,7 @@
 <p><button {{action "select" this.model }}>✓</button> {{this.model.title}}</p>
+
+<label for="facebook">Facebook</label>
+<Input @id="facebook" @value="http://www.facebook.com"  />
+
+<label for="admin-checkbox">Is Admin?</label>
+<Input @id="admin-checkbox" @type="checkbox" @name="isAdmin" @checked={{this.isAdmin}} />
