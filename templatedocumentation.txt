@@ -125,3 +125,20 @@
           Welcome back, <b>{{this.person.firstName}} {{this.person.lastName}}</b>!
         {{/if}}
     
+12) LOOP
+    
+    *) INDEX 
+    
+        <ul>
+          {{#each this.people as |person index|}}
+            <li>Hello, {{person.name}}! You're number {{index}} in line</li>
+          {{/each}}
+        </ul>
+    
+    *) EMPTY
+    
+        {{#each this.people as |person|}}
+          Hello, {{person.name}}!
+        {{else}}
+          Sorry, nobody is here.
+        {{/each}}
