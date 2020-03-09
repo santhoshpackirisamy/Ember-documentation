@@ -179,3 +179,15 @@
 
     <label for="name-editor">
     <Input @value={{this.enteredName}} id="name-editor" />
+    
+14) Binding attribures in template
+
+    <div id="logo">
+      <img src={{this.logoUrl}} alt="Logo">
+    </div>
+
+    This generates the following HTML:
+
+    <div id="logo">
+      <img src="http://www.example.com/images/logo.png" alt="Logo">
+    </div>
