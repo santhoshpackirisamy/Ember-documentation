@@ -45,7 +45,7 @@
     the block shows up when the page is rendered -->
     {{yield}}
 
-5) Helper
+5) Helper - can be passed as [] and {}
 
     import { helper as buildHelper } from '@ember/component/helper';
 
@@ -67,6 +67,42 @@
     
     eg: <link integrity="" rel="stylesheet" href="https://my-font-cdn/something.css">
     
+    
 7) this -> to refer data defined in this js file
    @ -> to refer data passed from parent file
    
+
+8) GET HELPER
+
+    {{get this.address this.part}}
+    
+    The {{get}} helper makes it easy to dynamically send the value of a variable to another helper or component. This can be useful if you want to output one of several values based on the result of a computed property.
+    if the part computed property returns "zip", this will display the result of this.address.zip. If it returns "city", you get this.address.city.
+    
+
+9) LET HELPER
+
+    {{#let (concat this.person.firstName this.person.lastName)
+      as |fullName|
+    }}
+
+    The {{let}} helper lets you create new bindings in your template.
+    
+10) Array helper
+    
+    <MyComponent @people={{array
+    'Tom Dade'
+    'Yehuda Katz'
+    this.myOtherPerson}}
+    />
+
+    //////////////////////////////
+    
+    
+    app/templates/components/my-component.hbs
+
+    <ul>
+      {{#each this.people as |person|}}
+        <li>{{person}}</li>
+      {{/each}}
+    </ul>
