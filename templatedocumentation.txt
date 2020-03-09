@@ -60,3 +60,13 @@
     <p>Total: {{sum 1 2}}</p>
 
     {{sum (multiply 2 4) 2}}    
+    
+6) CSS CRN link
+
+    adding external crn link 
+    
+    eg: <link integrity="" rel="stylesheet" href="https://my-font-cdn/something.css">
+    
+7) this -> to refer data defined in this js file
+   @ -> to refer data passed from parent file
+   
