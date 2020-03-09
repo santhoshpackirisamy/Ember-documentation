@@ -106,3 +106,22 @@
         <li>{{person}}</li>
       {{/each}}
     </ul>
+    
+11) CONDITIONAL
+
+    *) INLINE FORM 
+    
+        <div class="is-car {{if this.isFast "zoooom" "putt-putt-putt"}}">
+        </div>
+        
+    *) NESTED FORM
+    
+        <div class="is-car {{if this.isFast "zoooom" "putt-putt-putt"}}">
+        </div>
+        
+    *) BLOCK FORM
+    
+        {{#if this.person}}
+          Welcome back, <b>{{this.person.firstName}} {{this.person.lastName}}</b>!
+        {{/if}}
+    
