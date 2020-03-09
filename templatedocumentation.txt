@@ -236,4 +236,7 @@ Alternatively, you could pass both a photo's ID and a comment to the component:
       </LinkTo>
     </p>
     
+17) ACTION 
+
+    eg : <button {{action "select" this.value on="mouseUp"}}>✓</button>
     
