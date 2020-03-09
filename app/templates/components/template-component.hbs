@@ -1,0 +1,11 @@
+<ul>
+  {{#each-in this.categories as |Key Value|}}
+    <li>{{Key}}
+      <ol>
+        {{#each Value as |Arrayitem index|}}
+          <li>{{Arrayitem}} and index is {{index}}</li>
+        {{/each}}
+      </ol>
+    </li>
+  {{/each-in}}
+</ul>
