@@ -1,4 +1,4 @@
-1) *********Dynamic Rendering *********************
+1) Dynamic Rendering
 
 
 app/templates/components/foo-component.hbs
@@ -96,3 +96,20 @@ Ember guarantees that, by the time didInsertElement() is called:
 
 The didRender hook is called during both render and re-render after the template has rendered and the DOM updated
 
+7) Positional Params
+
+app/templates/index.hbs
+
+{{#each this.model as |post|}}
+  {{blog-post post.title post.body}}
+{{/each}}
+
+/////////////////////////
+
+app/components/blog-post.js
+
+import Component from '@ember/component';
+
+export default Component.extend({}).reopenClass({
+  positionalParams: ['title', 'body']
+});
