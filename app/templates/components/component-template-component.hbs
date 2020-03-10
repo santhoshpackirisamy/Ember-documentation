@@ -1,0 +1,9 @@
+<h1>{{this.title}}</h1>
+{{yield}}
+<p>hello</p>
+
+<div class="item-list">
+  {{#each this.items as |item|}}
+    <div class="list-item {{if true 'selected-item'}}">{{item.id}}</div>
+  {{/each}}
+</div>

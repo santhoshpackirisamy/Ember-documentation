@@ -1,0 +1,13 @@
+{{log this.model.willDestroyElement}}
+
+
+{{#if this.model.willDestroyElement}}
+    <ComponentTemplateComponent @title={{this.model.title}} @items={{this.model.didrender}} @selectedItemId={{2}}>
+
+        <label for="title">Blog Title</label>
+        <p>Edit title: <Input @id="title" @type="text" @value={{this.model.title}} /></p>   
+        <button {{action "terminate"}}>terminateComponent</button>
+
+    </ComponentTemplateComponent>
+
+{{/if}}

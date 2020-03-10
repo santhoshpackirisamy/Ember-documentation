@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('helper-template', function(){
     this.route('edit', { path: '/:photo_id' });
   });
+  this.route('component-template');
 });
 
 export default Router;

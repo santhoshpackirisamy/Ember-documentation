@@ -1,4 +1,4 @@
-*********Dynamic Rendering *********************
+1) *********Dynamic Rendering *********************
 
 
 app/templates/components/foo-component.hbs
@@ -48,3 +48,51 @@ app/templates/index.hbs
     <Post @post={{post}} />
   {{/let}}
 {{/each}}
+
+
+2) Order of Lifecycle Hooks Called
+
+*) On Initial Render
+
+    init                // init only
+    didReceiveAttrs
+    willRender
+    didInsertElement    // init only
+    didRender
+
+*) On Re-Render
+
+    didUpdateAttrs   
+    didReceiveAttrs     // init
+    willUpdate
+    willRender          // init          
+    didUpdate
+    didRender           // init
+
+*) On Component Destroy
+
+    willDestroyElement
+    willClearRender
+    didDestroyElement
+
+3) didUpdateAttrs
+
+didUpdateAttrs runs when the attributes of a component have changed, but not when the component is re-rendered, via component.rerender, component.set, or changes in models or services used by the template.
+
+4) didReceiveAttrs
+
+didReceiveAttrs runs after init, and it also runs on subsequent re-renders, which is useful for logic that is the same on all renders. It does not run when the re-render has been initiated internally.
+
+5) didInsertElement().
+
+After a component successfully renders its backing HTML element into the DOM, it will trigger its didInsertElement() hook.
+
+Ember guarantees that, by the time didInsertElement() is called:
+
+*) The component's element has been both created and inserted into the DOM.
+*) The component's element is accessible via the component's this.element property.
+
+6) didRender
+
+The didRender hook is called during both render and re-render after the template has rendered and the DOM updated
+
