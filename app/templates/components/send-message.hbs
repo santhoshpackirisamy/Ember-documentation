@@ -1,0 +1,7 @@
+<ButtonWithConfirmation
+    @text="Click to send your message."
+    @onConfirm={{action "sendMessage" "info" target=this.messaging}}
+    as |confirmValue|>
+  <label for="confirm-message">Confirm Message</label>
+  <Input @id="confirm-message" @value={{confirmValue}} />
+</ButtonWithConfirmation>
