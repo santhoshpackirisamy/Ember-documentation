@@ -113,3 +113,32 @@ import Component from '@ember/component';
 export default Component.extend({}).reopenClass({
   positionalParams: ['title', 'body']
 });
+
+
+8) Customizing the Element
+
+To use a tag other than div, subclass Component and assign it a tagName property. This property can be any valid HTML5 tag name as a string.
+
+9) Default component rendering
+
+<div id="ember180" class="ember-view">
+  <h1>My Component</h1>
+</div>
+
+
+10) Customizing the Element's Class
+
+app/components/todo-item.js
+
+import Component from '@ember/component';
+
+export default Component.extend({
+  classNameBindings: ['isEnabled:enabled:disabled'],
+  isEnabled: false
+});
+
+/////////////////////////////
+
+This would render this HTML:
+
+<div class="ember-view disabled">

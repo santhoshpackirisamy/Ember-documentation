@@ -13,6 +13,7 @@ Router.map(function() {
   });
   this.route('component-template');
   this.route('yield-template');
+  this.route('navigation-bar');
 });
 
 export default Router;
