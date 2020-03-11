@@ -12,6 +12,7 @@ Router.map(function() {
     this.route('edit', { path: '/:photo_id' });
   });
   this.route('component-template');
+  this.route('yield-template');
 });
 
 export default Router;
