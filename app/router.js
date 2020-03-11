@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('component-template');
   this.route('yield-template');
   this.route('navigation-bar');
+  this.route('event');
 });
 
 export default Router;
