@@ -1,4 +1,5 @@
-<YieldTemplateComponent @editStyle="markdown-style" @postData={{this.model}} as |post|>
-  <p class="author">by {{this.model.author}}</p>
-  {{post.body bodyStyle="compact-style"}}
+<YieldTemplateComponent @post={{this.model}} as |title body author|>
+  <h2>{{title}}</h2>
+  <p class="author">by {{author}}</p>
+  <p class="post-body">{{body}}</p>
 </YieldTemplateComponent>
