@@ -12,3 +12,66 @@
 *) From a controller, use the transitionToRoute() method
 *) From anywhere else in your application, such as a component, inject the Router Service and use the transitionTo() method
 
+3) Linking to a dynamic segment
+
+If a route you are trying to link to has multiple dynamic segments, like /photos/4/comments/18, be sure to specify all the necessary information for each segment:
+
+<LinkTo @route="photos.photo.comments.comment" @models={{array 4 18}}>
+  link text to display
+</LinkTo>
+
+4) Reusing Route Context
+
+*) You might run into this if you have a URL like /photos/4/comments/18, and when you're in the comments route, you need a photo ID.
+
+In this scenario, you can use the paramsFor method to get the parameters of a parent route.
+
+//////////////////////////////////
+
+app/routes/album/index.js
+
+import Route from '@ember/routing/route';
+
+export default Route.extend({
+  model() {
+    let { album_id } = this.paramsFor('album');
+
+    return this.store.query('song', { album: album_id });
+  }
+});
+
+*) In our case, the parent route had already loaded its songs, so we would be writing unnecessary fetching logic. Let's rewrite the same route, but use modelFor, which works the same way, but returns the model from the parent route.
+
+////////////////////////
+
+app/routes/album/index.js
+
+import Route from '@ember/routing/route';
+
+export default Route.extend({
+  model() {
+    let { songs } = this.modelFor('album');
+
+    return songs;
+  }
+});
+
+In the case above, the parent route looked something like this:
+
+//////////////////////////
+
+app/routes/album.js
+
+import Route from '@ember/routing/route';
+import RSVP from 'rsvp';
+
+export default Route.extend({
+  model({ album_id }) {
+    return RSVP.hash({
+      album: this.store.findRecord('album', album_id),
+      songs: this.store.query('songs', { album: album_id })
+    });
+  }
+});
+
+And calling modelFor returned the result of the model hook.
