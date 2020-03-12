@@ -158,3 +158,21 @@ When the user clicks on a <LinkTo>, or when the app initiates a transition by us
 
 *) Loading - display loading of routes
 *) Error - display error in routes
+
+11) Specifying Query Parameters
+
+*) Query params are declared on route-driven controllers.
+
+12) LinkTo component
+
+The LinkTo component supports specifying query params using the query-params subexpression helper.
+
+13) Opting into a full transition
+
+refreshModel -> refresh model
+
+14) Sticky Query Param Values
+
+*) these sticky query param values are remembered/restored according to the model loaded into the route. 
+
+*) use the Route.resetController hook to set query param values back to their defaults before exiting the route or changing the route's model.
