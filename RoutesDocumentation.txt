@@ -75,3 +75,17 @@ export default Route.extend({
 });
 
 And calling modelFor returned the result of the model hook.
+
+5) Rendering a Template
+
+If you want to render a template other than the default one, set the route's templateName property to the name of the template you want to render instead.
+
+///////////////////////////////
+
+app/routes/posts.js
+
+import Route from '@ember/routing/route';
+
+export default Route.extend({
+  templateName: 'posts/favorite-posts'
+});
