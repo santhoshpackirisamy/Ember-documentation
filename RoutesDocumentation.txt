@@ -176,3 +176,7 @@ refreshModel -> refresh model
 *) these sticky query param values are remembered/restored according to the model loaded into the route. 
 
 *) use the Route.resetController hook to set query param values back to their defaults before exiting the route or changing the route's model.
+
+15) Asynchronous Routing
+
+Handling the routing process through promise
