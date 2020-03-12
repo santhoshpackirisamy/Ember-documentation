@@ -4,3 +4,11 @@
 *) The user changes the URL manually, such as by clicking the back button or by editing the address bar.
 *) The user clicks a link within the app.
 *) Some other event in the app causes the URL to change.
+
+2) Transitioning Between Routes
+
+*) From a template, use <LinkTo> as mentioned above
+*) From a route, use the transitionTo() method
+*) From a controller, use the transitionToRoute() method
+*) From anywhere else in your application, such as a component, inject the Router Service and use the transitionTo() method
+
