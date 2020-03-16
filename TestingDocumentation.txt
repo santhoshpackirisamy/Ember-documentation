@@ -1,0 +1,17 @@
+1) Unit Tests
+
+Unit Tests are useful for testing pure functions where the return value is only determined by its input values, without any observable side effects.
+
+2) Container Tests
+
+If we need to test the functionality around an Ember class instance, such as a Controller, Service, or Route, we can use a container test to do that by setting up the application's container.
+
+3) Rendering Tests
+
+If we need to test the interactions between various parts of the application, such as behavior between UI controls we can utilize Rendering Tests.
+
+4) Application Tests
+
+Finally if we are looking to test user interaction and application flow in order to verify user stories or a feature from an end-user perspective, we can use Application Tests. In these kinds of tests, we interact with the application in the same ways that a user would, such as filling out form fields and clicking buttons.
+
+
