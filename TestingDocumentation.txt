@@ -14,4 +14,17 @@ If we need to test the interactions between various parts of the application, su
 
 Finally if we are looking to test user interaction and application flow in order to verify user stories or a feature from an end-user perspective, we can use Application Tests. In these kinds of tests, we interact with the application in the same ways that a user would, such as filling out form fields and clicking buttons.
 
+5) Application Tests
+
+*) setupApplicationTest deals with application setup and teardown
+
+*) Types:
+
+    *) Asynchronous Helpers
+
+Asynchronous helpers are "aware" of (and wait for) asynchronous behavior within your application, making it much easier to write deterministic tests.
+
+    *) Synchronous Helpers
+
+Synchronous helpers are performed immediately when triggered.
 
