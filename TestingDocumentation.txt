@@ -28,3 +28,20 @@ Asynchronous helpers are "aware" of (and wait for) asynchronous behavior within 
 
 Synchronous helpers are performed immediately when triggered.
 
+
+6) Testing Basics
+
+    *) By testing the basics properties of computation.
+    
+    *) Some times you might be working on a feature, but know that a certain test will fail so you might want to skip it. You can do it by using skip:
+
+        import { test, skip } from 'qunit';
+
+        test('run this test', function(assert) {
+            assert.ok(true)
+        });
+
+        skip('skip this test', function(assert) {
+            assert.ok(true)
+        });
+        
